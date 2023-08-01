@@ -1,6 +1,11 @@
+import { Injectable } from "@angular/core";
 import { Oferta } from "./shared/oferta.model";
+import { Http } from "@angular/http";
 
+@Injectable()
 export class OfertasService {
+
+    constructor (private http: Http) {}
 
     public ofertas: Oferta[] = [
         {
@@ -67,6 +72,21 @@ export class OfertasService {
                 reject({ codigo_erro: 404, mensagem_erro: "NOT_FOUND"})
             } 
         })
+        .then(( ofertas: Oferta[]) => {
+            console.log('first then from service');
+            return ofertas;
+        })
+        .then(( ofertas: Oferta[]) => {
+            console.log('second then from service');
+            return new Promise((resolve2, reject2) => {
+                setTimeout(() => { resolve2( ofertas)}, 3000 )
+            });
+        })
+        .then((ofertas: Oferta[]) => {
+            console.log('third then waiting promise resolve');
+            return ofertas;
+        })
+
     }
 
 
