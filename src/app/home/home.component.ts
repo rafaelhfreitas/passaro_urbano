@@ -21,7 +21,6 @@ export class HomeComponent implements OnInit {
 
     this.ofertasService.getOfertas().then(
       (ofertas: Oferta[]) => { 
-        console.log('resolvido');
         this.ofertas = ofertas; }
     ).catch(
       ( response: any) => {console.log(response)}
