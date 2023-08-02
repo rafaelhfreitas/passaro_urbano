@@ -19,7 +19,8 @@ export class OfertaComponent implements OnInit {
   {}
 
   ngOnInit() {
-    console.log('id recuperado da rota via snapshot', this.route.snapshot.params['id'])
+    // console.log('id recuperado da rota via snapshot', this.route.snapshot.params['id'])
+    
     // this.route.params.subscribe((param: any) => {
     //   console.log(param)
     // })

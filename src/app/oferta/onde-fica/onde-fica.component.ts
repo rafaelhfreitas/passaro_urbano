@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { OfertasService } from 'app/ofertas.service';
 
 @Component({
   selector: 'app-onde-fica',
@@ -7,9 +9,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class OndeFicaComponent implements OnInit {
 
-  constructor() { }
+  public ondeFica: string = '';
+
+  constructor(
+    private route: ActivatedRoute,
+    private ofertasService: OfertasService) 
+  { }
 
   ngOnInit() {
+    //console.log(this.route.parent.snapshot.params['id'])
+    this.ofertasService.getOndeFicaOfertaPorId(this.route.parent.snapshot.params['id'])
+      .then((response: string) => {
+        this.ondeFica = response
+      })
   }
 
 }
