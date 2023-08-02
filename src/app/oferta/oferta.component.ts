@@ -29,6 +29,13 @@ export class OfertaComponent implements OnInit {
     .then((oferta: Oferta) => {
       this.oferta = oferta;
     })
+
+
+    this.route.params.subscribe(
+      (param : any ) => { console.log(param) },
+      (erro : any ) => console.log(erro),
+      () => console.log('processamento classificado como concluído')
+    )
   }
 
 }
