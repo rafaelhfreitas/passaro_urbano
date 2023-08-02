@@ -11,7 +11,7 @@ export class OfertasService {
     constructor (private http: Http) {}
 
     public getOfertas(): Promise<Oferta[]> {
-        return this.http.get('localhost:3000/ofertas')
+        return this.http.get('http://localhost:3000/ofertas?destaque=true')
             .toPromise()
             .then((response: any) => response.json())
     }
