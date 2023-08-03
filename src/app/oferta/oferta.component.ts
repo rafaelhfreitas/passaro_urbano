@@ -4,9 +4,9 @@ import { ActivatedRoute } from '@angular/router';
 import { OfertasService } from '../ofertas.service';
 import { Oferta } from '../shared/oferta.model';
 
-import { Observable } from 'rxjs/Observable';
-import { Observer } from 'rxjs/Observer';
-import { Subscription } from 'rxjs/Subscription';
+  // import { Observable } from 'rxjs/Observable';
+  // import { Observer } from 'rxjs/Observer';
+  // import { Subscription } from 'rxjs/Subscription';
 
 import 'rxjs/Rx'
 
@@ -20,8 +20,8 @@ import 'rxjs/Rx'
 })
 export class OfertaComponent implements OnInit, OnDestroy {
 
-  private timeObservableSubscription: Subscription
-  private myObservableSubscription: Subscription
+  // private timeObservableSubscription: Subscription
+  // private myObservableSubscription: Subscription
 
 
   public oferta: Oferta;
@@ -54,40 +54,40 @@ export class OfertaComponent implements OnInit, OnDestroy {
 
 
 
-    let time = Observable.interval(2000)
+    // let time = Observable.interval(2000)
 
-    this.timeObservableSubscription = time.subscribe(( interval: number) => {
-      console.log(interval);
-    })
-
-
-
-    // observable (obserbavel)
-    let myObservable = Observable.create(
-      (observer: Observer<number>) => {
-        observer.next(1)
-        observer.next(3)
-        //observer.error('Algum erro foi encontrado no stream de evento')
-        observer.complete()
-        observer.next(3)
-    })
+    // this.timeObservableSubscription = time.subscribe(( interval: number) => {
+    //   console.log(interval);
+    // })
 
 
 
-    // observable (observador)
-    this.myObservableSubscription = myObservable.subscribe(
-      (param: number) =>  console.log(param + 10),
-      (erro: string) => { console.log(erro)},
-      () => console.log('Stream de eventos foi finalizada')
-    )
+    // // observable (obserbavel)
+    // let myObservable = Observable.create(
+    //   (observer: Observer<number>) => {
+    //     observer.next(1)
+    //     observer.next(3)
+    //     //observer.error('Algum erro foi encontrado no stream de evento')
+    //     observer.complete()
+    //     observer.next(3)
+    // })
+
+
+
+    // // observable (observador)
+    // this.myObservableSubscription = myObservable.subscribe(
+    //   (param: number) =>  console.log(param + 10),
+    //   (erro: string) => { console.log(erro)},
+    //   () => console.log('Stream de eventos foi finalizada')
+    // )
 
   }
 
 
   ngOnDestroy(){
 
-    this.myObservableSubscription.unsubscribe();
-    this.timeObservableSubscription.unsubscribe();
+    // this.myObservableSubscription.unsubscribe();
+    // this.timeObservableSubscription.unsubscribe();
 
   }
 
