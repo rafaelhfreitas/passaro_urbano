@@ -23,7 +23,9 @@ export class HomeComponent implements OnInit {
       (ofertas: Oferta[]) => { 
         this.ofertas = ofertas; }
     ).catch(
-      ( response: any) => {console.log(response)}
+      ( response: any) => {
+        console.log(response)
+      }
     )
   }  
 
