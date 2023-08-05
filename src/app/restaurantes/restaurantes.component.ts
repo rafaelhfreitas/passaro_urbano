@@ -13,6 +13,8 @@ export class RestaurantesComponent implements OnInit {
 
   public ofertas: Oferta[];
 
+  public dateTest: any = new Date(2023,7,30);
+
   constructor(private ofertasService: OfertasService) { }
 
   ngOnInit() {
