@@ -1,9 +1,13 @@
 import { Component, OnInit } from '@angular/core';
+
 import { Observable } from 'rxjs/Observable';
+import { Subject } from 'rxjs/Subject';
+
+import '../util/rxjs-extensions'
 
 import { OfertasService } from 'app/ofertas.service';
 import { Oferta } from 'app/shared/oferta.model';
-import { of } from 'rxjs/observable/of';
+
 
 @Component({
   selector: 'app-topo',
@@ -13,12 +17,37 @@ import { of } from 'rxjs/observable/of';
 })
 export class TopoComponent implements OnInit {
 
-
-  public ofertas: Observable<Oferta[]>
+ 
+  public ofertas: Observable<Oferta[]>;
+  public ofertasPesquisadas: Oferta[];
+  private subjectPesquisa: Subject<string> = new Subject<string>();
 
   constructor(private ofertasService: OfertasService) { }
 
   ngOnInit() {
+
+    this.ofertas = this.subjectPesquisa
+      .debounceTime(1000)
+      .distinctUntilChanged()
+      .switchMap((termo: string) => {
+        console.log('requisição   http para api ')
+        if (termo.trim() === '') {
+          //retornar um observable de array de ofertas vazio
+          return Observable.of<Oferta[]>([])
+        }
+        return this.ofertasService.pesquisaOfertas(termo)
+      })
+      .catch( (error: any ) => {
+        console.log(error)
+        return Observable.of<Oferta[]>([])
+      })
+
+    this.ofertas.subscribe((ofertas: Oferta[]) => {
+      console.log(ofertas);
+      this.ofertasPesquisadas = ofertas;
+
+    }
+    )
   }
 
 
@@ -27,14 +56,19 @@ export class TopoComponent implements OnInit {
   // }
 
   public pesquisa(termoDaBusca: string): void {
-    this.ofertas = this.ofertasService.pesquisaOfertas(termoDaBusca)
-    // console.log(this.ofertas)
 
-    this.ofertas.subscribe(
-      (ofertas: Oferta[]) => console.log(ofertas ),
-      (erro: any) => console.log('Erro status', erro.status),
-      () => console.log('Fluxo de eventos completo !!')
-    )
+    console.log('keyup caracter: ', termoDaBusca)
+    this.subjectPesquisa.next(termoDaBusca);
+
+
+    // this.ofertas = this.ofertasService.pesquisaOfertas(termoDaBusca)
+    // // console.log(this.ofertas)
+
+    // this.ofertas.subscribe(
+    //   (ofertas: Oferta[]) => console.log(ofertas ),
+    //   (erro: any) => console.log('Erro status', erro.status),
+    //   () => console.log('Fluxo de eventos completo !!')
+    // )
   }  
 
 }
