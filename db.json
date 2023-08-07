@@ -227,6 +227,20 @@
       "complemento": "casa",
       "formaPagamento": "dinheiro",
       "id": 6
+    },
+    {
+      "endereco": "rua rafael",
+      "numero": "12345",
+      "complemento": "",
+      "formaPagamento": "dinheiro",
+      "id": 7
+    },
+    {
+      "endereco": "Rua teste",
+      "numero": "123456",
+      "complemento": "casa",
+      "formaPagamento": "dinheiro",
+      "id": 8
     }
   ]
 }
