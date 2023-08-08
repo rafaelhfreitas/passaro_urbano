@@ -22,6 +22,10 @@ import { OrdemCompraSucessoComponent } from './ordem-compra-sucesso/ordem-compra
 // Pipe
 import { DescricaoReduzida } from './util/descricao-reduzida.pipe';
 
+
+//Services
+import { CarrinhoService } from './carrinho.service';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -44,7 +48,7 @@ import { DescricaoReduzida } from './util/descricao-reduzida.pipe';
     ReactiveFormsModule,
     RouterModule.forRoot(ROUTES)
   ],
-  providers: [{ provide: LOCALE_ID, useValue:  'pt-BR'}],
+  providers: [CarrinhoService, { provide: LOCALE_ID, useValue:  'pt-BR'}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

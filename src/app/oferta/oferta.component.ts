@@ -2,6 +2,9 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 
 import { OfertasService } from '../ofertas.service';
+import { CarrinhoService } from 'app/carrinho.service';
+
+
 import { Oferta } from '../shared/oferta.model';
 
   // import { Observable } from 'rxjs/Observable';
@@ -28,10 +31,13 @@ export class OfertaComponent implements OnInit, OnDestroy {
 
   constructor(
     private route: ActivatedRoute, 
-    private ofertasService: OfertasService) 
+    private ofertasService: OfertasService,
+    private carrinhoService: CarrinhoService) 
   {}
 
   ngOnInit() {
+
+    console.log('Itens do carrinho via oferta comp:' ,this.carrinhoService.exibirItens());
 
 
     // console.log('id recuperado da rota via snapshot', this.route.snapshot.params['id'])
@@ -91,6 +97,25 @@ export class OfertaComponent implements OnInit, OnDestroy {
     // this.timeObservableSubscription.unsubscribe();
 
   }
+
+
+  // ngOnInit já recebe o object oferta, que é passado para o template, por não é necessário envia-lo de volta
+  // public adicionarItemCarrinho(oferta: Oferta): void {
+
+  //   console.log(oferta);
+    
+  // }
+
+
+  public adicionarItemCarrinho(): void {
+
+    this.carrinhoService.incluirItem(this.oferta);
+    console.log(this.carrinhoService.exibirItens());
+    
+  }
+
+
+
 
 
 }
