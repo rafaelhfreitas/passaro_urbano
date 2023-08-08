@@ -241,6 +241,20 @@
       "complemento": "casa",
       "formaPagamento": "dinheiro",
       "id": 8
+    },
+    {
+      "endereco": "rua reactive",
+      "numero": "100",
+      "complemento": null,
+      "formaPagamento": "dinheiro",
+      "id": 9
+    },
+    {
+      "endereco": "Rua reactive ",
+      "numero": "1000",
+      "complemento": "casa",
+      "formaPagamento": "debito",
+      "id": 10
     }
   ]
 }
